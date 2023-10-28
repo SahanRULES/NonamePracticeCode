@@ -10,11 +10,10 @@ import frc.robot.subsystems.ArmPneumaticSubsystem;
 public class ArmPneumaticCommand extends CommandBase {
   /** Creates a new ArmPneumaticCommand. */
   private ArmPneumaticSubsystem m_armPneumaticSubsystem;
-  boolean toExtend; //boolean tells want position they want the arm to be in
-  public ArmPneumaticCommand(ArmPneumaticSubsystem armPneumaticSubsystem, boolean toExtend) {  
+  public ArmPneumaticCommand(ArmPneumaticSubsystem armPneumaticSubsystem) {  
     // Use addRequirements() here to declare subsystem dependencies.
     m_armPneumaticSubsystem = armPneumaticSubsystem;
-    this.toExtend = toExtend;
+
 
     addRequirements(m_armPneumaticSubsystem);
   }
@@ -22,12 +21,7 @@ public class ArmPneumaticCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(toExtend==true){  //If user wanted the arm to extend toExtend would be true and it would extend
-      m_armPneumaticSubsystem.extendArm();
-    }
-    else{                //If toExtend is false user wants arm to retract so it would retract
-      m_armPneumaticSubsystem.retractArm();
-    }
+    m_armPneumaticSubsystem.changePosition();
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override

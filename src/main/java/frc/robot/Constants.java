@@ -28,5 +28,15 @@ public final class Constants {
 
   //hat constants
   public static final int HAT_JOYSTICK_ARM = LEFT_JOYSTICK_CHANNEL;
-  public static final int HAT_POV_ARM_UP = 0;
+  
+  //hat angles
+  public static final int HAT_POV_ARM_UP = 0; 
+  public static final int HAT_POV_ARM_DOWN = 180;
+  
+  public static final double HAT_POSE_CHANGE_PER_STEP = -0.03; 
+
+  //Button Constatns
+  public static final int CLAW_PNEUMATIC_BUTTON = 3;
+  public static final int ARM_PNEUMATIC_BUTTON = 4;
+
 }

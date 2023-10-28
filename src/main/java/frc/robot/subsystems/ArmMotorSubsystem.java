@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class ArmMotorSubsystem extends SubsystemBase {
+  double m_poseTarget;
   /** Creates a new ArmMotorSubsystem. */
   Joystick hatJoystickRotationArm;
   TalonFX armMotor = new TalonFX(Constants.TALON_CHANNEL);
@@ -21,6 +22,12 @@ public class ArmMotorSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     hatJoystickRotationArm = new Joystick(Constants.HAT_JOYSTICK_ARM);
-   // if()
+    if(hatJoystickRotationArm.getPOV()==Constants.HAT_POV_ARM_UP){
+      armMotor.set(ControlMode.PercentOutput,0.03);
+    }
+    if(hatJoystickRotationArm.getPOV() == Constants.HAT_POV_ARM_DOWN){
+      armMotor.set(ControlMode.PercentOutput,-0.03);  //Opposite for down
+    }
+   
   }
 }

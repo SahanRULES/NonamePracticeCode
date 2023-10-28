@@ -7,7 +7,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ArmPneumaticCommand;
+import frc.robot.commands.ClawPneumaticCommand;
+import frc.robot.subsystems.ArmPneumaticSubsystem;
+import frc.robot.subsystems.ClawPneumaticSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -16,6 +21,12 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+
+
+  public static final ArmPneumaticSubsystem m_armPneumaticSubsystem = new ArmPneumaticSubsystem();
+  public static final ClawPneumaticSubsystem m_clawPneumaticSubsystem = new ClawPneumaticSubsystem();
+  public static final ClawPneumaticCommand m_clawPneumaticCommand = new ClawPneumaticCommand(m_clawPneumaticSubsystem);
+  public static final ArmPneumaticCommand m_armPneumaticCommand = new ArmPneumaticCommand(m_armPneumaticSubsystem);
 
   //Joysticks
   Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
@@ -37,8 +48,13 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    Trigger clawPneumaticButton = new JoystickButton(leftJoystick, Constants.CLAW_PNEUMATIC_BUTTON);
+    Trigger armPneumaticButton = new JoystickButton(leftJoystick, Constants.ARM_PNEUMATIC_BUTTON);
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-;
+    clawPneumaticButton.onTrue(m_clawPneumaticCommand);
+    armPneumaticButton.onTrue(m_armPneumaticCommand);
+
+    
   }
 
   /**

@@ -36,12 +36,7 @@ public class ClawPneumaticSubsystem extends SubsystemBase {
   }
 
   public void changePosition(){
-    if(doubleSolenoid.get()==Value.kForward){
-      openClaw();
-    }
-    else{
-      closeClaw();
-    }
+    doubleSolenoid.toggle();
   }
 
   @Override

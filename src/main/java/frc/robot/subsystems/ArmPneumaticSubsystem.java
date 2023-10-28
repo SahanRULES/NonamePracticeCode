@@ -35,13 +35,8 @@ public class ArmPneumaticSubsystem extends SubsystemBase {
     doubleSolenoid.set(Value.kForward); //extends arm
   }
 
-  public void oppositePosition(){       //Goes to opposite possition of current position
-    if(doubleSolenoid.get()==Value.kForward){ 
-      retractArm();
-    }
-    else{
-      extendArm();
-    }
+  public void changePosition(){       //Goes to opposite possition of current position
+    doubleSolenoid.toggle();
   }
 
   @Override

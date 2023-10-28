@@ -10,23 +10,16 @@ import frc.robot.subsystems.ClawPneumaticSubsystem;
 public class ClawPneumaticCommand extends CommandBase {
   /** Creates a new ClawPneumaticCommand. */
   ClawPneumaticSubsystem m_clawPneumaticSubsystem;
-  boolean toExtend;
-  public ClawPneumaticCommand(ClawPneumaticSubsystem clawPneumaticSubsystem, boolean toExtend) {
-      m_clawPneumaticSubsystem = clawPneumaticSubsystem;
-      this.toExtend = toExtend;
 
+  public ClawPneumaticCommand(ClawPneumaticSubsystem clawPneumaticSubsystem) {
+      m_clawPneumaticSubsystem = clawPneumaticSubsystem;   
       addRequirements(m_clawPneumaticSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(toExtend == true){
-      m_clawPneumaticSubsystem.openClaw();
-    }
-    else{
-      m_clawPneumaticSubsystem.closeClaw();
-    }
+    m_clawPneumaticSubsystem.changePosition();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
