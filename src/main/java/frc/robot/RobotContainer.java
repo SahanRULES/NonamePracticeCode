@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ArmMotorCommand;
 import frc.robot.commands.ArmPneumaticCommand;
 import frc.robot.commands.ClawPneumaticCommand;
+import frc.robot.subsystems.ArmMotorSubsystem;
 import frc.robot.subsystems.ArmPneumaticSubsystem;
 import frc.robot.subsystems.ClawPneumaticSubsystem;
 
@@ -22,16 +24,17 @@ import frc.robot.subsystems.ClawPneumaticSubsystem;
  */
 public class RobotContainer {
 
-
+  public static final ArmMotorSubsystem m_armMotorSubsystem = new ArmMotorSubsystem();
   public static final ArmPneumaticSubsystem m_armPneumaticSubsystem = new ArmPneumaticSubsystem();
   public static final ClawPneumaticSubsystem m_clawPneumaticSubsystem = new ClawPneumaticSubsystem();
+
   public static final ClawPneumaticCommand m_clawPneumaticCommand = new ClawPneumaticCommand(m_clawPneumaticSubsystem);
   public static final ArmPneumaticCommand m_armPneumaticCommand = new ArmPneumaticCommand(m_armPneumaticSubsystem);
-
+  public static final ArmMotorCommand m_armMotorCommand = new ArmMotorCommand(m_armMotorSubsystem);
   //Joysticks
-  Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
+  static Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
   Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK_CHANNEL);
- 
+  
   
   public RobotContainer() {
     // Configure the trigger bindings
@@ -50,9 +53,12 @@ public class RobotContainer {
   private void configureBindings() {
     Trigger clawPneumaticButton = new JoystickButton(leftJoystick, Constants.CLAW_PNEUMATIC_BUTTON);
     Trigger armPneumaticButton = new JoystickButton(leftJoystick, Constants.ARM_PNEUMATIC_BUTTON);
+    Trigger moveArmButton = new JoystickButton(leftJoystick, Constants.ARM_MOVE_BUTTON);
+
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     clawPneumaticButton.onTrue(m_clawPneumaticCommand);
     armPneumaticButton.onTrue(m_armPneumaticCommand);
+    moveArmButton.whileTrue(m_armMotorCommand);
 
     
   }

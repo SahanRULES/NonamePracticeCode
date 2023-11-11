@@ -13,21 +13,25 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class ArmMotorSubsystem extends SubsystemBase {
   double m_poseTarget;
-  /** Creates a new ArmMotorSubsystem. */
+  double speed;
   Joystick hatJoystickRotationArm;
   TalonFX armMotor = new TalonFX(Constants.TALON_CHANNEL);
+  Joystick sliderJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
   public ArmMotorSubsystem() {}
 
+
+  public void moveArm(){
+    speed = sliderJoystick.getThrottle()/4;
+    System.out.println(speed);
+    armMotor.set(ControlMode.PercentOutput,speed);
+  }
+
+
+  public void zeroArmPower(){
+    armMotor.set(ControlMode.PercentOutput, 0);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    hatJoystickRotationArm = new Joystick(Constants.HAT_JOYSTICK_ARM);
-    if(hatJoystickRotationArm.getPOV()==Constants.HAT_POV_ARM_UP){
-      armMotor.set(ControlMode.PercentOutput,0.03);
-    }
-    if(hatJoystickRotationArm.getPOV() == Constants.HAT_POV_ARM_DOWN){
-      armMotor.set(ControlMode.PercentOutput,-0.03);  //Opposite for down
-    }
-   
   }
 }

@@ -16,12 +16,15 @@ public final class Constants {
 
   //Joystick channelss
   public static final int LEFT_JOYSTICK_CHANNEL = 0;
-  public static final int RIGHT_JOYSTICK_CHANNEL = 2;
+  public static final int RIGHT_JOYSTICK_CHANNEL = 1;
 
   //Pneumatic Channels
   public static final int PNEUMATIC_HUB_CANID = 15;
-  public static final int OPEN_CHANNEL = 5;
-  public static final int CLOSE_CHANNEL = 1;
+  public static final int CLAW_OPEN_CHANNEL = 5;
+  public static final int CLAW_CLOSE_CHANNEL = 1;
+  public static final int ARM_OPEN_CHANNEL = 7;
+  public static final int ARM_CLOSE_CHANNEL = 0;
+
   
   //arm motor constants
   public static final int TALON_CHANNEL = 21;
@@ -37,6 +40,6 @@ public final class Constants {
 
   //Button Constatns
   public static final int CLAW_PNEUMATIC_BUTTON = 3;
-  public static final int ARM_PNEUMATIC_BUTTON = 4;
-
+  public static final int ARM_PNEUMATIC_BUTTON = 1;
+  public static final int ARM_MOVE_BUTTON = 2;
 }

@@ -19,8 +19,8 @@ public class ClawPneumaticSubsystem extends SubsystemBase {
     doubleSolenoid = new DoubleSolenoid(
       Constants.PNEUMATIC_HUB_CANID,  //Pneumatic Hub CANID
       PneumaticsModuleType.CTREPCM,    //Type of Pneumatic Module
-      Constants.CLOSE_CHANNEL,        // Close Channel
-      Constants.OPEN_CHANNEL);        //Open Channel
+      Constants.CLAW_CLOSE_CHANNEL,        // Close Channel
+      Constants.CLAW_OPEN_CHANNEL);        //Open Channel
   }
 
   public boolean isClawClosed(){

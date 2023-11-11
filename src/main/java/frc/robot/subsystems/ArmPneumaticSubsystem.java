@@ -19,19 +19,22 @@ public class ArmPneumaticSubsystem extends SubsystemBase {
     doubleSolenoid = new DoubleSolenoid(
       Constants.PNEUMATIC_HUB_CANID,  //Pneumatic Hub CANID
       PneumaticsModuleType.CTREPCM,    //Type of Pneumatic Module
-      Constants.CLOSE_CHANNEL,        // Close Channel
-      Constants.OPEN_CHANNEL);        //Open Channel
+      Constants.ARM_CLOSE_CHANNEL,        // Close Channel
+      Constants.ARM_OPEN_CHANNEL);        //Open Channel
   }
 
   public boolean isArmExtended(){
+    System.out.println("isArmExtended");
     return doubleSolenoid.get() == Value.kForward; //Gets true or false value on whether arm is extended or not
   }
 
-  public void retractArm(){
-    doubleSolenoid.set(Value.kReverse);  //retracts arm
-  }
-
   public void extendArm(){
+    doubleSolenoid.set(Value.kReverse);  //retracts arm
+    System.out.println("Retract Arm");
+  }
+  
+
+  public void retractArm(){
     doubleSolenoid.set(Value.kForward); //extends arm
   }
 
