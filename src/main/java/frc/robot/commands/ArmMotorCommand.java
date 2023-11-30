@@ -26,12 +26,15 @@ public class ArmMotorCommand extends CommandBase {
   @Override
   public void execute() {
     m_armMotorSubsystem.moveArm();
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) {   
+    //m_armMotorSubsystem.keepArmUp();
     m_armMotorSubsystem.zeroArmPower();
+
   }
 
   // Returns true when the command should end.

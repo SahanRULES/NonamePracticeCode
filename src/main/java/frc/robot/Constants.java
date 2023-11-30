@@ -25,9 +25,18 @@ public final class Constants {
   public static final int ARM_OPEN_CHANNEL = 7;
   public static final int ARM_CLOSE_CHANNEL = 0;
 
-  
+  //arm encoder constants
+  public static final int ARM_ENCODER_ID = 7;
+  public static final int ARM_ENCODER_OFFSET = -349;
+
+
   //arm motor constants
   public static final int TALON_CHANNEL = 21;
+  public static final double ARM_MOTOR_FF_GAIN = -0.20;
+  public static final int ARM_RETRACTED_LOWER_LIMIT = 25;
+  public static final int ARM_RETRACTED_UPPER_LIMIT = 335;
+
+
 
   //hat constants
   public static final int HAT_JOYSTICK_ARM = LEFT_JOYSTICK_CHANNEL;
