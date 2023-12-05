@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -15,10 +16,14 @@ public class ArmMotorSubsystem extends SubsystemBase {
   double m_poseTarget;
   double speed;
   Joystick hatJoystickRotationArm;
+  private AnalogInput encoder = new AnalogInput(7);
   TalonFX armMotor = new TalonFX(Constants.TALON_CHANNEL);
   Joystick sliderJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
   public ArmMotorSubsystem() {}
 
+  public double getEncoderCounts(){
+    return encoder.getValue();
+  }
 
   public void moveArm(){
     speed = sliderJoystick.getThrottle()/4;
